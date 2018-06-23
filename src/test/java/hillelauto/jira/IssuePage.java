@@ -15,7 +15,7 @@ import org.testng.Assert;
 import hillelauto.Tools;
 
 public class IssuePage {
-    private final By inputProject = By.cssSelector("input#project-field");
+    private final By inputProject = By.cssSelector("input#project-field"); // это просто  селекторы
     private final By inputSummary = By.cssSelector("input#summary");
     private final WebDriver browser;
     private String newIssuePath;
@@ -73,4 +73,3 @@ public class IssuePage {
 
         // https://stackoverflow.com/questions/304268/getting-a-files-md5-checksum-in-java
     }
-}

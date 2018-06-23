@@ -21,16 +21,19 @@ public class LoginPage {
     /* указывается пннотируемая переменная, которая заполнится селектором выше.
      Сдесь будет лежать элемент, найденый по селектору
      Можно было бы написать:
-     privete WebElement elem = browser.findElement(By.cssSelector("a#header-details-user-fullname");
+            privete WebElement elem = browser.findElement(By.cssSelector("a#header-details-user-fullname");
      но этот код выполнится в момент создания объекта.
      Если страница не успеет открыться, то елемент не будет найден
      И поэтому код нужно писать внутри теста - но это тупо
-     тут наш селектор превращается в скомпилированный выд когда создается объект и потом, когда они будут использоваться,
+     тут наш селектор превращается в скомпилированный вид когда создается объект и потом, когда они будут использоваться,
       они будут работать быстрее
       где полем воспользуемся в тот момент поиск и произойдет
+
+      плюс такой записи в том, что сначала мы можем обьявить селекторы в начале,
+      а использовать их будем во время обращения программы
      */
     @FindBy(css = "div#usernameerror")
-    private List<WebElement> messageError; // будет искать с помощью findElements
+    private List<WebElement> messageError; // будет искать с помощью findElements, List нужен для того чтоб не выкинуло Exeption
 
     public LoginPage(WebDriver browser) {
         this.browser = browser;
@@ -43,10 +46,15 @@ public class LoginPage {
 
     public void failureLogin() {
         login(false);
-        Assert.assertTrue(messageError.size() != 0);
+        Assert.assertTrue(messageError.size() != 0); // ищем все элементы заданного селектора, объявленного выше и если...
     }
 
-    private void login(boolean successful) { // privete - доступен только в этом классе
+
+    /*
+    функция login открывает браузер и вводит данные в поля имя и пароль, подтверждает, которые мы нашли через
+    селекторы выше
+    */
+    void login(boolean successful) { // private - доступен только в этом классе
         browser.get(JiraVars.baseURL);
 
         Tools.clearAndFill(inputUsername, JiraVars.username);

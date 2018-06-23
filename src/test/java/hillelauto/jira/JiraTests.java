@@ -24,7 +24,8 @@ public class JiraTests extends WebDriverTestBase { // наши тесты нас
         initElements() позволяет выполнить все селекторы в LoginPage и IssuePage для заданного браузера browser
         создаем объекти типа LoginPage.class, IssuePage.class и автоматически вшиваем из в браузер
         */
-        loginPage = PageFactory.initElements(browser, LoginPage.class); // инициализируем loginPage вернет LoginPage потому что loginPage это LoginPage, объявлено выше
+        loginPage = PageFactory.initElements(browser, LoginPage.class); // инициализируем loginPage вернет
+        // LoginPage потому что loginPage это LoginPage, объявлено выше. PageFactory.initElements нужно для инициализации аннотации @fFindBy
         issuePage = PageFactory.initElements(browser, IssuePage.class);
         System.out.println("Jira Pages Initialized");
     }

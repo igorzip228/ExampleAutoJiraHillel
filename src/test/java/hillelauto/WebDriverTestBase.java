@@ -25,7 +25,7 @@ public class WebDriverTestBase {
         browser = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized", "--incognito")); // запускаем chrome с параметрами
         browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        Tools.setDriver(browser);
+        Tools.setDriver(browser); // запомни браузер и все последующие операции делай в нем
     }
 
     @AfterTest(alwaysRun = true) //применим для всех сайтов
